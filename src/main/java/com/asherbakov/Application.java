@@ -1,7 +1,10 @@
 package com.asherbakov;
 
+import com.asherbakov.dao.CityDAO;
 import com.asherbakov.dao.EmployeeDAO;
+import com.asherbakov.dao.impl.CityDAOImpl;
 import com.asherbakov.dao.impl.EmployeeDAOImpl;
+import com.asherbakov.entity.City;
 import com.asherbakov.entity.Employee;
 
 import java.io.BufferedReader;
@@ -15,7 +18,9 @@ public class Application {
     public static void main(String[] args) throws SQLException, IOException {
         EmployeeDAO employeeDAO = new EmployeeDAOImpl();
         // 1. Создание(добавление) сущности Employee в таблицу
-        employeeDAO.create(new Employee("Anthon", "Schvetsov", "Male", 21, 4L));
+        CityDAO cityDAO = new CityDAOImpl();
+        City city = cityDAO.getCityById(1L);
+        employeeDAO.create(new Employee("Anthon", "Schvetsov", "Male", 21, city));
 
         // 2. Получение конкретного объекта Employee по id
         System.out.println("\nДля получения объекта базы данных, введите его id: ");
@@ -41,7 +46,7 @@ public class Application {
         if (employee.isPresent()) {
             Employee e = employee.get();
             e.setAge(15);
-            e.setCityId(3L);
+            e.setCity(city);
             employeeDAO.changeEmployee(e);
         }
 

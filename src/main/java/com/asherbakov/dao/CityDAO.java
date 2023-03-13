@@ -1,6 +1,6 @@
 package com.asherbakov.dao;
 
-import com.asherbakov.City;
+import com.asherbakov.entity.City;
 
 import java.sql.SQLException;
 
