@@ -23,15 +23,16 @@ public class Employee {
     private String lastName;
     private String gender;
     private int age;
-    @Column(name = "city_id")
-    private Long cityId;
+    @ManyToOne
+    @JoinColumn(name = "city_id")
+    private City city;
 
-    public Employee(String firstName, String lastName, String gender, int age, Long cityId) {
+    public Employee(String firstName, String lastName, String gender, int age, City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.gender = gender;
         this.age = age;
-        this.cityId = cityId;
+        this.city = city;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class Employee {
                 ", lastName='" + lastName + '\'' +
                 ", gender='" + gender + '\'' +
                 ", age=" + age +
-                ", city=" + cityId +
+                ", city=" + city +
                 '}';
     }
 }
